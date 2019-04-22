@@ -63,12 +63,14 @@ switch (e.target.value){
         break;
     case "+/-":
         this.setState({
-            result: this.state.result*-1
+            result: this.state.result*-1,
+            display: this.state.result*-1,
         })
         break;
     case "%" :
         this.setState({ 
-           result: this.state.result / 100
+           result: this.state.result / 100,
+           display: this.state.result /100,
         })
         break;
     case "/" :
@@ -104,42 +106,42 @@ total=()=> {
     switch (this.state.operator) {
        case "/" : 
             let divideResult = Number(this.state.inputA) / Number(this.state.inputB);
-            let divideB = this.state.inputB
                 this.setState({
                     result: divideResult,
                     display: divideResult,
                     inputA: divideResult,
-                    inputB: divideB
+                    inputB: null,
+                    waiting: false
                 })
                 break;
             case "x" :
                 let timesResult = Number(this.state.inputA) * Number(this.state.inputB);
-                let timesB = this.state.inputB
                 this.setState({
                     result: timesResult,
                     display: timesResult,
                     inputA: timesResult,
-                    inputB: timesB
+                    inputB: null,
+                    waiting: false
                 })
                 break;
             case "-" :
                 let minusResult = Number(this.state.inputA) - Number(this.state.inputB);
-                let minusB = this.state.inputB
                 this.setState({
                     result: minusResult,
                     display: minusResult,
                     inputA: minusResult,
-                    inputB: minusB
+                    inputB: null,
+                    waiting: false
                 })
                 break;
              case "+" :
                 let plusResult = Number(this.state.inputA) + Number(this.state.inputB);
-                let plusB = this.state.inputB
                 this.setState({
                     result: plusResult,
                     display: plusResult,
                     inputA: plusResult,
-                    inputB: plusB
+                    inputB: null,
+                    waiting: false
                 })
                 break;
             default :
