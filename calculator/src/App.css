@@ -6,39 +6,39 @@
 .Calculator {
   margin: auto;
   margin-top:5px;
-  height: 145px;
-  width: 115px;
+  height: 600px;
+  width: 375px;
 }
 
 .Display{
   background: black;
   color: white;
-  height:30px;
+  height:150px;
   text-align: right;
   padding-right:2%;
 }
 
 .KeyPad {
-  height:115px;
+  height:450px;
   background: black;
   color: white;
   display:grid;
-  grid-template-columns: 20px 20px 20px 20px;
+  grid-template-columns: 60px 60px 60px 60px;
   justify-content: space-evenly;
 }
 
 .item0 {
   grid-column: 1 / span 2;
   border-radius:10px;
-  height:20px;
+  height:60px;
   width:auto;
   text-align: left;
 }
 
 .item {
   border-radius: 50%;
-  height:20px;
-  width:20px;
+  height:60px;
+  width:60px;
 }
 
 .opp {
@@ -51,7 +51,7 @@
   background:lightgrey;
   color:black;
   border:none;
-  font-size: 8px;
+  font-size: 16px;
   padding:10%;
 }
 
