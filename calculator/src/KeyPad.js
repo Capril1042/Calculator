@@ -11,7 +11,7 @@ class KeyPad extends Component {
       <button className="item num" onClick={this.props.handleNumber} value="7">7</button>
       <button className="item num" onClick={this.props.handleNumber} value="8">8</button>
       <button className="item num" onClick={this.props.handleNumber} value="9">9</button>
-      <button className="item opp" onClick={this.props.handleClick} value="*">x</button>
+      <button className="item opp" onClick={this.props.handleClick} value="x">x</button>
       <button className="item num" onClick={this.props.handleNumber} value="4">4</button>
       <button className="item num" onClick={this.props.handleNumber} value="5">5</button>
       <button className="item num" onClick={this.props.handleNumber} value="6">6</button>
@@ -22,6 +22,7 @@ class KeyPad extends Component {
       <button className="item opp" onClick={this.props.handleClick} value="+">+</button>
       <button className="item0 num" onClick={this.props.handleNumber} value="0">0</button>
       <button className="item num" onClick={this.props.handleNumber} value=".">.</button>
+      <button className="item opp" onClick={this.props.handleClick} value="p">p</button>
       <button className="item opp" onClick={this.props.total} value="=">=</button>
       
       </div>

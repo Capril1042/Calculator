@@ -7,45 +7,38 @@ class Display extends Component {
         this.state = {
             inputA: null,
             inputB: null,
-            result: null,
-            operator: '',
-            display: 0,
-            wating: false
+            result: 0,
+            operator: null,
+            // display: 0,
+            
 
         };
     }
 
 handleNumber=(e)=>{
 e.preventDefault();
-if (!this.state.waiting && this.state.inputA === null) {
+let  valueA = this.state.inputA === null ?
+e.target.value :
+this.state.inputA + e.target.value;
+
+let  valueB = this.state.inputB === null ?
+e.target.value :
+this.state.inputB + e.target.value;
+
+if (this.state.operator === null) {
 this.setState({
-    inputA: e.target.value,
-    display: e.target.value,
-    result: Number(e.target.value)
+    inputA: valueA,
+    // display: valueA,
+    result: valueA
 })
-} else 
-if(!this.state.waiting && this.state.inputA !== null) {
+} 
+if(this.state.operator !== null) {
     this.setState({
-    inputA: this.state.inputA + e.target.value,
-    display: this.state.inputA + e.target.value,
-    result: Number(this.state.inputA + e.target.value)
-
+    inputB: valueB,
+    // display: valueB,
+    result: Number(valueB)
     })
-} else 
-if(this.state.waiting && this.state.inputB === null) {
-    this.setState({
-    inputB: e.target.value,
-    display: e.target.value,
-    result:Number(e.target.value),
-    })
-} else {
-   this.setState({
-    inputB: this.state.inputB + e.target.value,
-    display: this.state.inputB + e.target.value  ,
-    result:Number(this.state.inputB + e.target.value)
-    }) 
 }
-
 }
 
 handleClick=(e)=>{
@@ -55,22 +48,22 @@ switch (e.target.value){
         this.setState({
             inputA: null,
             inputB: null,
-            result: null,
-            operator: '',
-            display: 0,
-            wating: false
+            result: 0,
+            operator: null,
+            waiting: false
         });
         break;
     case "+/-":
+        let neg = Number(this.state.inputA * -1)
         this.setState({
-            result: this.state.result*-1,
-            display: this.state.result*-1,
+            result: neg,
+            inputA: neg
         })
         break;
     case "%" :
         this.setState({ 
            result: this.state.result / 100,
-           display: this.state.result /100,
+        //    display: this.state.result /100,
         })
         break;
     case "/" :
@@ -79,10 +72,10 @@ switch (e.target.value){
         operator: "/" ,
         })
         break;
-    case "*" :
+    case "x" :
         this.setState({
         waiting: true,
-        operator: "*" ,
+        operator: "x" ,
        })
         break;
     case "-" :
@@ -97,6 +90,13 @@ switch (e.target.value){
         operator: "+" ,
        })   
         break;
+    case "p" :
+     let powerResult = Number(this.state.inputA) * Number(this.state.inputA);
+         this.setState({
+                    result: powerResult,
+                    // display: powerResult,
+                    inputA: powerResult
+                })
     default :
         break;
 }
@@ -108,42 +108,49 @@ total=()=> {
             let divideResult = Number(this.state.inputA) / Number(this.state.inputB);
                 this.setState({
                     result: divideResult,
-                    display: divideResult,
+                    // display: divideResult,
                     inputA: divideResult,
                     inputB: null,
-                    waiting: false
+                    operator: null
                 })
                 break;
             case "x" :
                 let timesResult = Number(this.state.inputA) * Number(this.state.inputB);
                 this.setState({
                     result: timesResult,
-                    display: timesResult,
+                    // display: timesResult,
                     inputA: timesResult,
                     inputB: null,
-                    waiting: false
+                    operator: null
                 })
                 break;
             case "-" :
                 let minusResult = Number(this.state.inputA) - Number(this.state.inputB);
                 this.setState({
                     result: minusResult,
-                    display: minusResult,
+                    // display: minusResult,
                     inputA: minusResult,
                     inputB: null,
-                    waiting: false
+                    operator: null
                 })
                 break;
              case "+" :
                 let plusResult = Number(this.state.inputA) + Number(this.state.inputB);
                 this.setState({
                     result: plusResult,
-                    display: plusResult,
+                    // display: plusResult,
                     inputA: plusResult,
                     inputB: null,
-                    waiting: false
+                    operator: null
                 })
                 break;
+            // case "p" :
+            // let powerResult =Number(this.state.inputA) * Number(this.state.inputA);
+            //     this.setState({
+            //         result: powerResult,
+            //         display: powerResult,
+            //         inputA: powerResult
+            //     })
             default :
                 break;
         }
@@ -153,13 +160,14 @@ total=()=> {
       console.log(`inputA: ${this.state.inputA}`)
       console.log(`inputB: ${this.state.inputB}`)
       console.log(`result: ${this.state.result}`)
-      console.log(`display: ${this.state.display}`)
+    //   console.log(`display: ${this.state.display}`)
       console.log(`operator: ${this.state.operator}`)
+     
 
     return (
         <div>
             <div className="Display">
-                {this.state.display}
+                {this.state.result}
             </div>
             <div>
                 <KeyPad handleClick={this.handleClick} handleNumber={this.handleNumber} total={this.total}/>
